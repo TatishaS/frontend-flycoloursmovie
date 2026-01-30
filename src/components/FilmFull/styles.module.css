@@ -1,0 +1,14 @@
+.icon-clock {
+  background: 50% no-repeat url("../../assets/icon-clock.svg") transparent;
+  border: none;
+  content: "";
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+
+  position: absolute;
+}
+
+.icon-clock:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,15 @@
+.modal_close {
+  background: 50% no-repeat url("../../assets/icon-close-modal.svg") transparent;
+  border: none;
+  content: "";
+  cursor: pointer;
+  height: 16px;
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 16px;
+}
+
+.modal_close:hover {
+  opacity: 0.8;
+}
