@@ -29,6 +29,10 @@ export interface IUserData {
   password: string;
   group: string;
 }
+export interface ILoginData {
+  email: string;
+  password: string;
+}
 
 export interface AuthState {
   user: any;
@@ -45,6 +49,15 @@ export const registerUser = createAsyncThunk(
   async (data: IUserData) => {
     console.log(data);
     const response = await axiosInstance.post<IUser>("/auth/register", data);
+    return response.data;
+  },
+);
+
+export const authUser = createAsyncThunk(
+  "auth/authUser",
+  async (data: ILoginData) => {
+    console.log(data);
+    const response = await axiosInstance.post<IUser>("/auth/login", data);
     return response.data;
   },
 );
@@ -69,6 +82,20 @@ const authSlice = createSlice({
       },
     );
     builder.addCase(registerUser.rejected, (state) => {
+      state.status = StatusEnum.ERROR;
+      state.user = null;
+    });
+    builder.addCase(authUser.pending, (state) => {
+      state.status = StatusEnum.LOADING;
+    });
+    builder.addCase(
+      authUser.fulfilled,
+      (state, action: PayloadAction<IUser>) => {
+        state.status = StatusEnum.SUCCESS;
+        state.user = action.payload;
+      },
+    );
+    builder.addCase(authUser.rejected, (state) => {
       state.status = StatusEnum.ERROR;
       state.user = null;
     });

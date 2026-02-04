@@ -20,6 +20,6 @@ export const Modal = ({
         {children}
       </div>
     </>,
-    document.body
+    document.body,
   );
 };

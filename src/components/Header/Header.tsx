@@ -1,16 +1,27 @@
 import React from "react";
 import { Link } from "react-router";
+
+import { useNavigate } from "react-router";
 import logoImage from "@/assets/flymovieclub_logo_transparent.png";
 import { Modal } from "../Modal/Modal";
 import { AuthModal } from "../AuthModal/AuthModal";
 import { SignupModal } from "../SignupModal/SignupModal";
-import { useAppSelector } from "@/redux/store";
-import { checkIsAuth } from "@/redux/slices/authSlice";
+import { useAppDispatch, useAppSelector, type RootState } from "@/redux/store";
+import { checkIsAuth, clearUser } from "@/redux/slices/authSlice";
 
 export const Header: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
   const [isRegisterModal, setIsRegisterModal] = React.useState<boolean>(false);
   const isAuth = useAppSelector(checkIsAuth);
+
+  const { user } = useAppSelector((state: RootState) => state.auth);
+
+  const logout = () => {
+    dispatch(clearUser());
+    navigate("/");
+  };
   return (
     <>
       <header className="mb-4 sticky top-0 left-0 right-0 bg-[#e6ecff]">
@@ -44,15 +55,29 @@ export const Header: React.FC = () => {
             </ul>
             {/* {user && <span>{user.name}</span>} */}
             <div className="flex items-center">
-              {isAuth && <a className="block mx-4">Регина С.</a>}
-              <button
-                className="rounded-4xl bg-[#f4c7c9] font-semibold py-2 px-4"
-                onClick={() => {
-                  return setIsModalVisible(!isModalVisible);
-                }}
-              >
-                {isAuth ? "Выйти" : "Войти"}
-              </button>
+              {isAuth && (
+                <a className="block mx-4">
+                  {user?.fullname ? user?.fullname : "Без имени"}
+                </a>
+              )}
+              {!isAuth && (
+                <button
+                  className="rounded-4xl bg-[#f4c7c9] font-semibold py-2 px-4"
+                  onClick={() => {
+                    return setIsModalVisible(!isModalVisible);
+                  }}
+                >
+                  Войти
+                </button>
+              )}
+              {isAuth && (
+                <button
+                  className="rounded-4xl bg-[#f4c7c9] font-semibold py-2 px-4"
+                  onClick={logout}
+                >
+                  Выйти
+                </button>
+              )}
             </div>
           </nav>
         </div>
@@ -66,7 +91,13 @@ export const Header: React.FC = () => {
             {isRegisterModal ? (
               <SignupModal />
             ) : (
-              <AuthModal onOpenRegister={() => setIsRegisterModal(true)} />
+              <AuthModal
+                onOpenRegister={() => setIsRegisterModal(true)}
+                onClose={() => {
+                  setIsRegisterModal(false);
+                  setIsModalVisible(false);
+                }}
+              />
             )}
           </Modal>
         )}

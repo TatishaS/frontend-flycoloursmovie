@@ -4,7 +4,7 @@ import type { IUserData } from "@/redux/slices/authSlice";
 import { useAppDispatch } from "@/redux/store";
 
 export const SignupModal: React.FC = () => {
-  const dispatch: any = useAppDispatch();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
