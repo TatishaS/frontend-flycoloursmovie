@@ -6,7 +6,7 @@ export const Slide: React.FC = () => {
       <div className="lg:grid grid-cols-3 gap-12">
         <div className="w-full relative">
           <img
-            src={movieImage}
+           src={movieImage}
             className="w-full h-full object-cover rounded-xl overflow-hidden mb-8 lg:mb-0 min-h-[200px] max-h-[400px]"
           />
           <span className="inline-block absolute top-2 right-2 text-white bg-zinc-600 rounded-sm opacity-80 p-1">

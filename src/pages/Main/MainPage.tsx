@@ -5,11 +5,11 @@ import { MainSlider } from "@/components/MainSlider/MainSlider";
 import { FilmProvider } from "@/contexts/Film/Provider";
 import axiosInstance from "@/config/axios";
 import { fetchActivities } from "@/redux/slices/activitySlice";
-import { registerUser } from "@/redux/slices/authSlice";
+import { fetchUser } from "@/redux/slices/authSlice";
 import { useAppDispatch, useAppSelector, type RootState } from "@/redux/store";
 
 export const MainPage: React.FC = () => {
-  const dispatch: any = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state: RootState) => state.auth);
 
   React.useEffect(() => {

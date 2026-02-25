@@ -1,9 +1,8 @@
-import { type IFilm } from "@/contexts/Film/context";
 import React from "react";
 import axios from "axios";
 import { type IActivity } from "@/redux/slices/activitySlice";
-import clockIcon from "@/assets/icon-clock.svg";
 import FilmFullSkeleton from "./FilmFullSkeleton";
+import styles from "./styles.module.css";
 
 interface FilmProps {
   filmId: string;
@@ -17,7 +16,6 @@ export const FilmFull: React.FC<FilmProps> = ({ filmId }) => {
   //if (!filmsObj || !filmsObj.films) return;
 
   React.useEffect(() => {
-    console.log(`${import.meta.env.VITE_BASE_URL}/activities/${filmId}`);
     axios
       .get(`${import.meta.env.VITE_BASE_URL}/activities/${filmId}` || "")
       .then((res) => {
@@ -60,7 +58,7 @@ export const FilmFull: React.FC<FilmProps> = ({ filmId }) => {
           <img
             src={imageUrl}
             alt={`Фильм ${title}`}
-            className="object-cover rounded-xl overflow-hidden h-[400px]"
+            className="object-cover rounded-xl overflow-hidden h-100"
           />
         </div>
         <div className="py-4 col-span-3 pr-16 flex flex-col justify-between">
@@ -68,11 +66,11 @@ export const FilmFull: React.FC<FilmProps> = ({ filmId }) => {
             <span className="block uppercase font-semibold text-lg mb-4 text-borders">
               {original}
             </span>
-            <h6 className="text-4xl font-bold max-w-80 leading-[1.25] mb-2">
+            <h6 className="text-4xl font-bold max-w-80 leading-tight mb-2">
               {title}
             </h6>
-            <span className="block">
-              <span className="icon_clock"></span>
+            <span className="flex items-center mb-4">
+              <span className={styles.icon_clock}></span>
               {duration} мин.
             </span>
             <p className="mb-4">{description}</p>

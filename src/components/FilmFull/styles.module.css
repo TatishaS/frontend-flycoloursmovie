@@ -1,14 +1,15 @@
-.icon-clock {
-  background: 50% no-repeat url("../../assets/icon-clock.svg") transparent;
+.icon_clock {
+  display: inline-block;
+  background: url("../../assets/icon-clock.svg") transparent no-repeat center /
+    contain;
   border: none;
   content: "";
   cursor: pointer;
-  width: 16px;
-  height: 16px;
-
-  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 }
 
-.icon-clock:hover {
+.icon_clock:hover {
   opacity: 0.8;
 }

@@ -24,9 +24,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<ILoginData> = (values) => {
+  const onSubmit: SubmitHandler<ILoginData> = async (values) => {
     console.log(values);
-    dispatch(authUser(values));
+    const data = await dispatch(authUser(values));
+    if (!data) {
+      alert("Не удалось авторизоваться");
+      return;
+    }
     onClose();
   };
 

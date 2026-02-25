@@ -1,4 +1,4 @@
-import movieImage from "@/assets/film-2.webp";
+ import movieImage from "@/assets/film-2.webp";
 
 export const Booking: React.FC = () => {
   return (

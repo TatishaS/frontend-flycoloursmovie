@@ -10,7 +10,7 @@ import { StatusEnum } from "@/redux/slices/activitySlice";
 
 export const FilmsList: React.FC = () => {
   const { activities, status } = useAppSelector(
-    (state: RootState) => state.activities
+    (state: RootState) => state.activities,
   );
 
   const dispatch = useAppDispatch();
@@ -22,15 +22,10 @@ export const FilmsList: React.FC = () => {
   const isLoadingActivities = status === StatusEnum.LOADING;
   console.log(isLoadingActivities);
 
-  /* const context = useContext(FilmContext);
-
-  if (!context || !context.films) return; */
-  //if (!activities) return;
-
   return (
     <>
       <p>Количество фильмов: {activities?.length}</p>
-      <div className="title">Все фильмы</div>
+      <h2 className="title">Все фильмы</h2>
       <div className="md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {Boolean(activities) &&
           activities?.map((activity) => (

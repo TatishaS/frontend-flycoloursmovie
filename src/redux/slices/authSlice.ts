@@ -61,6 +61,13 @@ export const authUser = createAsyncThunk(
     return response.data;
   },
 );
+
+export const fetchUser = createAsyncThunk("auth/fetchUser", async () => {
+  const response = await axiosInstance.get<IUser>("/auth/me");
+  console.log(response);
+  return response.data;
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -68,6 +75,7 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
       state.status = StatusEnum.SUCCESS;
+      window.localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
@@ -93,9 +101,24 @@ const authSlice = createSlice({
       (state, action: PayloadAction<IUser>) => {
         state.status = StatusEnum.SUCCESS;
         state.user = action.payload;
+        window.localStorage.setItem("token", action.payload.token);
       },
     );
     builder.addCase(authUser.rejected, (state) => {
+      state.status = StatusEnum.ERROR;
+      state.user = null;
+    });
+    builder.addCase(fetchUser.pending, (state) => {
+      state.status = StatusEnum.LOADING;
+    });
+    builder.addCase(
+      fetchUser.fulfilled,
+      (state, action: PayloadAction<IUser>) => {
+        state.status = StatusEnum.SUCCESS;
+        state.user = action.payload;
+      },
+    );
+    builder.addCase(fetchUser.rejected, (state) => {
       state.status = StatusEnum.ERROR;
       state.user = null;
     });

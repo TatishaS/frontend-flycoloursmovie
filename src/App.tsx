@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 
 import { MainPage } from "./pages/Main/MainPage";
@@ -13,8 +14,17 @@ import { AddActivity } from "./components/AddActivity/AddActivity";
 import { AdminLayout } from "./layouts/AdminLayout/AdminLayout";
 import { AllBookings } from "./components/AllBookings/AllBookings";
 import { Dashboard } from "./components/Dashboard/Dashboard";
+import { useAppDispatch, useAppSelector } from "./redux/store";
+import { checkIsAuth, fetchUser } from "./redux/slices/authSlice";
 
 export function App() {
+  const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(checkIsAuth);
+
+  React.useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+
   return (
     <>
       <FilmProvider>
@@ -33,7 +43,7 @@ export function App() {
                   <Route path="activities" element={<AllBookings />} />
                   <Route path="create" element={<AddActivity />} />
                 </Route>
-                <Route path="user/:userId" element={<UserMain />} />
+                <Route path="users/:userId" element={<UserMain />} />
                 <Route path="404" element={<Page404 />} />
               </Routes>
             </MainLayout>

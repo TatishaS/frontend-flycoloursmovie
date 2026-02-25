@@ -1,5 +1,5 @@
-import { UserProfile } from "@/components/UserProfile/UserProfile.js";
-import { BookingList } from "@/components/BookingList/BookingList.js";
+import { UserProfile } from "@/components/UserProfile/UserProfile";
+import { BookingList } from "@/components/BookingList/BookingList";
 
 export const UserMain: React.FC = () => {
   return (

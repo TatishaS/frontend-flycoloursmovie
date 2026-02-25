@@ -56,9 +56,9 @@ export const Header: React.FC = () => {
             {/* {user && <span>{user.name}</span>} */}
             <div className="flex items-center">
               {isAuth && (
-                <a className="block mx-4">
+                <Link className="block mx-4" to={`/users/${user._id}`}>
                   {user?.fullname ? user?.fullname : "Без имени"}
-                </a>
+                </Link>
               )}
               {!isAuth && (
                 <button
