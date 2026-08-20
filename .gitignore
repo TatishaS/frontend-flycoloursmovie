@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Test coverage output
+coverage
+
+# Local environment files (see .env.example for the required keys)
+.env
+.env.*
+!.env.example
+
+# Local scratch / design sketches, not part of the app
+scratch
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
