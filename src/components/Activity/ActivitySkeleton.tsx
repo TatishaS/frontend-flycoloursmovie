@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-const FilmSkeleton = () => (
+const ActivitySkeleton = () => (
   <ContentLoader
     speed={2}
     width={350}
@@ -8,6 +8,8 @@ const FilmSkeleton = () => (
     viewBox="0 0 290 360"
     backgroundColor="#f4f3f4"
     foregroundColor="#bfbfbf"
+    data-testid="activity-skeleton"
+    aria-label="Загрузка мероприятия..."
   >
     <rect x="3" y="8" rx="12" ry="12" width="258" height="197" />
     <rect x="0" y="232" rx="0" ry="0" width="257" height="28" />
@@ -18,4 +20,4 @@ const FilmSkeleton = () => (
   </ContentLoader>
 );
 
-export default FilmSkeleton;
+export default ActivitySkeleton;

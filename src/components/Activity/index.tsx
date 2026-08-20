@@ -1,12 +1,12 @@
 import movieImage from "@/assets/film-1.jpg";
 import type { IActivity } from "@/redux/slices/activitySlice";
-interface FilmProps {
-  film: IActivity;
+interface ActivityProps {
+  activity: IActivity;
 }
 
-export const Film: React.FC<FilmProps> = ({ film }) => {
+export const Activity: React.FC<ActivityProps> = ({ activity }) => {
   const { title, duration, originalLanguage, subtitlesLanguage, imageUrl } =
-    film;
+    activity;
 
   return (
     <div className="rounded-xl bg-white p-4">
@@ -14,7 +14,7 @@ export const Film: React.FC<FilmProps> = ({ film }) => {
         <div className="mb-8">
           <img
             src={imageUrl}
-            className="object-cover overflow-hidden  lg:mb-0 h-[200px] rounded-md w-full"
+            className="object-cover overflow-hidden  lg:mb-0 h-50 rounded-md w-full"
           />
         </div>
         <h6>{title}</h6>

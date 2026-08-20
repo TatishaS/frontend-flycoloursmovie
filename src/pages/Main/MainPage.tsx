@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { FilmsList } from "@/components/FilmsList/FilmsList";
+import { ActivitiesList } from "@/components/ActivitiesList/ActivitiesList";
 import { MainSlider } from "@/components/MainSlider/MainSlider";
 import { FilmProvider } from "@/contexts/Film/Provider";
 import axiosInstance from "@/config/axios";
@@ -36,7 +36,7 @@ export const MainPage: React.FC = () => {
       {/* <p>{user.fullname}</p>
       <p>{user.group}</p> */}
       <MainSlider />
-      <FilmsList />
+      <ActivitiesList />
     </div>
   );
 };

@@ -36,7 +36,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div>
-      <h2 className="modal__title text-xl font-bold text-center mb-4">
+      <h2
+        className="modal__title text-xl font-bold text-center mb-4"
+        data-testid="modal-signin"
+      >
         Войти в аккаунт
       </h2>
       <form className="modal__form" onSubmit={handleSubmit(onSubmit)}>

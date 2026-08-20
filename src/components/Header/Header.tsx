@@ -62,17 +62,18 @@ export const Header: React.FC = () => {
               )}
               {!isAuth && (
                 <button
-                  className="rounded-4xl bg-[#f4c7c9] font-semibold py-2 px-4"
+                  className="rounded-4xl bg-salmon font-semibold py-2 px-4"
                   onClick={() => {
                     return setIsModalVisible(!isModalVisible);
                   }}
+                  data-testid="button-login"
                 >
                   Войти
                 </button>
               )}
               {isAuth && (
                 <button
-                  className="rounded-4xl bg-[#f4c7c9] font-semibold py-2 px-4"
+                  className="rounded-4xl bg-salmon font-semibold py-2 px-4"
                   onClick={logout}
                 >
                   Выйти

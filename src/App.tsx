@@ -5,7 +5,7 @@ import { MainPage } from "./pages/Main/MainPage";
 import { FilmPage } from "./pages/FilmPage/FilmPage";
 import { BookPage } from "./pages/Book/BookPage";
 import { FilmProvider } from "./contexts/Film/Provider";
-import { FilmsList } from "./components/FilmsList/FilmsList";
+import { ActivitiesList } from "./components/ActivitiesList/ActivitiesList";
 import { MainLayout } from "./layouts/MainLayout/MainLayout";
 
 import { UserMain } from "./pages/UserMain/UserMain";
@@ -35,7 +35,7 @@ export function App() {
                 <Route index element={<MainPage />} />
                 <Route path="films/:filmId" element={<FilmPage />} />
                 <Route path="films/new" element={<AddActivity />} />
-                <Route path="films" element={<FilmsList />} />
+                <Route path="films" element={<ActivitiesList />} />
                 <Route path="book" element={<BookPage />} />
                 <Route path="admin" element={<AdminLayout />}>
                   <Route index element={<Dashboard />} />

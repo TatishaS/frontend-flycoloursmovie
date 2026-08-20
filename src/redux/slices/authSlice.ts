@@ -29,6 +29,7 @@ export interface IUserData {
   password: string;
   group: string;
 }
+
 export interface ILoginData {
   email: string;
   password: string;

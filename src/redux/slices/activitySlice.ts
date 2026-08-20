@@ -42,7 +42,7 @@ export const fetchActivities = createAsyncThunk<IActivity[]>(
   async () => {
     const response = await axiosInstance.get<IActivity[]>("/activities");
     return response.data;
-  }
+  },
 );
 
 export const activitySlice = createSlice({
@@ -63,7 +63,7 @@ export const activitySlice = createSlice({
       (state, action: PayloadAction<IActivity[]>) => {
         state.status = StatusEnum.SUCCESS;
         state.activities = action.payload;
-      }
+      },
     );
     builder.addCase(fetchActivities.rejected, (state) => {
       state.status = StatusEnum.ERROR;
