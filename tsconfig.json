@@ -8,18 +8,15 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "outDir": "./dist/",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "types": [
       "node",
-      "jest",
-      "@types/jest",
+      "vitest/globals",
       "@types/node",
       "@types/react",
       "@types/react-dom",
-      "@types/swiper",
       "@testing-library/jest-dom"
     ],
 
@@ -46,7 +43,7 @@
     "src",
     "src/types/environment.d.ts",
     "test",
-    "jest.setup.ts",
+    "vitest.setup.ts",
     "vite-env.d.ts",
     "request.js"
   ]
