@@ -14,12 +14,13 @@ import { AddActivity } from "./components/AddActivity/AddActivity";
 import { AdminLayout } from "./layouts/AdminLayout/AdminLayout";
 import { AllBookings } from "./components/AllBookings/AllBookings";
 import { Dashboard } from "./components/Dashboard/Dashboard";
-import { useAppDispatch, useAppSelector } from "./redux/store";
-import { checkIsAuth, fetchUser } from "./redux/slices/authSlice";
+import { useAppDispatch } from "./redux/store";
+import { fetchUser } from "./redux/slices/authSlice";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { AdminRoute } from "./routes/AdminRoute";
 
 export function App() {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(checkIsAuth);
 
   React.useEffect(() => {
     dispatch(fetchUser());
@@ -33,18 +34,25 @@ export function App() {
             <MainLayout>
               <Routes>
                 <Route index element={<MainPage />} />
-                <Route path="films/:filmId" element={<FilmPage />} />
-                <Route path="films/new" element={<AddActivity />} />
                 <Route path="films" element={<ActivitiesList />} />
-                <Route path="book" element={<BookPage />} />
-                <Route path="admin" element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
-                  <Route path="bookings" element={<AllBookings />} />
-                  <Route path="activities" element={<AllBookings />} />
-                  <Route path="create" element={<AddActivity />} />
+                <Route path="films/:filmId" element={<FilmPage />} />
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="book" element={<BookPage />} />
+                  <Route path="users/:userId" element={<UserMain />} />
                 </Route>
-                <Route path="users/:userId" element={<UserMain />} />
+
+                <Route element={<AdminRoute />}>
+                  <Route path="admin" element={<AdminLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="bookings" element={<AllBookings />} />
+                    <Route path="activities" element={<AllBookings />} />
+                    <Route path="create" element={<AddActivity />} />
+                  </Route>
+                </Route>
+
                 <Route path="404" element={<Page404 />} />
+                <Route path="*" element={<Page404 />} />
               </Routes>
             </MainLayout>
           </BrowserRouter>

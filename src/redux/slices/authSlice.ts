@@ -4,6 +4,7 @@ import axiosInstance from "@/config/axios";
 import type { RootState } from "../store";
 
 export const StatusEnum = {
+  IDLE: "IDLE",
   LOADING: "LOADING",
   SUCCESS: "SUCCESS",
   ERROR: "ERROR",
@@ -42,7 +43,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   user: null,
-  status: StatusEnum.LOADING,
+  status: StatusEnum.IDLE,
 };
 
 export const registerUser = createAsyncThunk(
@@ -129,5 +130,14 @@ const authSlice = createSlice({
 export const { clearUser } = authSlice.actions;
 
 export const checkIsAuth = (state: RootState) => Boolean(state.auth.user);
+
+export const selectAuthStatus = (state: RootState) => state.auth.status;
+
+export const selectIsAuthResolved = (state: RootState) =>
+  state.auth.status === StatusEnum.SUCCESS ||
+  state.auth.status === StatusEnum.ERROR;
+
+export const selectIsAdmin = (state: RootState) =>
+  state.auth.user?.role === "admin";
 
 export default authSlice.reducer;

@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
               </li>
               {isAuth && (
                 <li className="header__menu-item">
-                  <Link to="/mybookings">Мои бронирования</Link>
+                  <Link to={`/users/${user._id}`}>Мои бронирования</Link>
                 </li>
               )}
             </ul>
